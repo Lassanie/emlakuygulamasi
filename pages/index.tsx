@@ -2,6 +2,7 @@ import { createStylesContext } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
 import {Text, Flex, Box, Button} from "@chakra-ui/react";
+import Property from '../components/Property';
 import {baseUrl, fetchApi} from '../utils/fetchApi.js';
 
 const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, imageUrl }: any ) => (
@@ -17,14 +18,12 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, i
 
   </Box>
   </Flex>
-)
+);
 
-export default function Home({propertiesForRent, propertiesForSale}: any) {
-  console.log(propertiesForRent, propertiesForSale)
-  return (
+const Home = ({ propertiesForSale, propertiesForRent }: any) => (
    <Box>
 <Banner
-purpose="EV Kiralayın"
+purpose="Ev Kiralayın"
 title1="Kiralık evler"
 title2="Kolayca ev bulun"
 desc1="Apartmanları, müstakil evleri, daireleri keşfedin"
@@ -33,10 +32,9 @@ buttonText="Keşfedin"
 linkName="/search?purpose=for-rent"
 imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
 />
-<Flex flexWrap="wrap">
- {/* API'dan fetchlenecek şeyler */}
-
-</Flex>
+<Flex flexWrap='wrap'>
+      {propertiesForRent.map((property: any) => <Property property={property} key={property.id} />)}
+    </Flex>
 <Banner
  purpose="EV Satın Alın"
 title1="Satılık Gayrimenkuller"
@@ -45,14 +43,14 @@ desc1="Apartmanları, müstakil evleri, daireleri keşfedin"
 desc2="Hemen üye olun"
 buttonText="Keşfedin"
 linkName="/search?purpose=for-sale"
-imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008" />
- <Flex flexWrap="wrap">
-   {/* API'dan fetchlenecek şeyler */}
-  </Flex>
+imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008" 
+/>
+  <Flex flexWrap='wrap'>
+      {propertiesForSale.map((property: any) => <Property property={property} key={property.id} />)}
+    </Flex>
    </Box>
   
-  )
-    };
+  );
    
     export async function getStaticProps() {
       
@@ -63,6 +61,8 @@ imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385
         props: {
           propertiesForSale: propertyForSale?.hits,
           propertiesForRent: propertyForRent?.hits,
-        }
-      }
+        },
+      };
     }
+
+    export default Home;
