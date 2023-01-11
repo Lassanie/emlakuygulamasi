@@ -1,3 +1,1 @@
-Reactjs, Nextjs, Typescript kullanılarak geliştirilmiş emlak satın alma ve kiralama uygulaması.
-
-Kullanılan API'nın servis vermeyi kesmesi sebebiyle bu proje de yarıda kesilmiştir.
+Reactjs, Nextjs, Typescript kullanılarak geliştirilmiş emlak satın alma ve kiralama uygulaması. Birleşik Arap Emirliklerindeki ev fiyatlarını ve ilan bilgilerini veren ücretsiz bir API kullanılarak geliştirilmiş, ancak kullanılan API'nin servis vermeyi kesmesi sebebiyle bu proje de yarıda kesilmiştir.
